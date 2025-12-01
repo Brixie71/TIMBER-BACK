@@ -6,6 +6,7 @@ use App\Http\Controllers\ShearDataController;
 use App\Http\Controllers\FlexureDataController;
 use App\Http\Controllers\CompressiveDataController;
 use App\Http\Controllers\CalibrationSettingController;
+use App\Http\Controllers\ReferenceValueController;  // ADD THIS LINE
 
 /*
 |--------------------------------------------------------------------------
@@ -137,4 +138,15 @@ Route::prefix('seven-segment')->group(function () {
             'error' => 'Recognition must be done through Python Flask backend at ' . env('VITE_PYTHON_API_URL', 'http://localhost:5000')
         ], 501);
     });
+});
+
+// Reference Values Routes (ADD THIS ENTIRE SECTION)
+Route::prefix('reference-values')->group(function () {
+    Route::get('/', [ReferenceValueController::class, 'index']);
+    Route::get('/{id}', [ReferenceValueController::class, 'show']);
+    Route::post('/', [ReferenceValueController::class, 'store']);
+    Route::put('/{id}', [ReferenceValueController::class, 'update']);
+    Route::delete('/{id}', [ReferenceValueController::class, 'destroy']);
+    Route::get('/meta/strength-groups', [ReferenceValueController::class, 'getStrengthGroups']);
+    Route::get('/search/species', [ReferenceValueController::class, 'searchSpecies']);
 });

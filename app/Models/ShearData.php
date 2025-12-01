@@ -34,6 +34,7 @@ class shearData extends Model
         'area',
         'moisture_content',
         'max_force_load',
+        'species_id',
         'photo'
     ];
 
@@ -48,6 +49,7 @@ class shearData extends Model
         'length' => 'float',
         'area' => 'float',
         'moisture_content' => 'float',
-        'max_force_load' => 'float'
+        'max_force_load' => 'float',
+        'species_id'
     ];
 }

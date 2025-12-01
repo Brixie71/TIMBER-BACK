@@ -1,0 +1,258 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\ReferenceValue;
+
+class ReferenceValueSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $data = [
+            // High Strength Group
+            [
+                'strength_group' => 'high',
+                'common_name' => 'Agoho',
+                'botanical_name' => 'Casuarina euiteitifolia Forst',
+                'compression_parallel' => 14.5,
+                'compression_perpendicular' => 5.91,
+                'shear_parallel' => 2.95,
+                'bending_tension_parallel' => 26.3,
+            ],
+            [
+                'strength_group' => 'high',
+                'common_name' => 'Luisin',
+                'botanical_name' => 'Parinari corymbosa (Blume) miq.',
+                'compression_parallel' => 15.6,
+                'compression_perpendicular' => 4.31,
+                'shear_parallel' => 2.64,
+                'bending_tension_parallel' => 25,
+            ],
+            [
+                'strength_group' => 'high',
+                'common_name' => 'Malabayabas',
+                'botanical_name' => 'Tristania spp.',
+                'compression_parallel' => 15.8,
+                'compression_perpendicular' => 8.7,
+                'shear_parallel' => 3.02,
+                'bending_tension_parallel' => 28.7,
+            ],
+            [
+                'strength_group' => 'high',
+                'common_name' => 'Manggachapui',
+                'botanical_name' => 'Hopea spp.',
+                'compression_parallel' => 16,
+                'compression_perpendicular' => 6.03,
+                'shear_parallel' => 2.78,
+                'bending_tension_parallel' => 25.8,
+            ],
+            [
+                'strength_group' => 'high',
+                'common_name' => 'Molave',
+                'botanical_name' => 'Vitex parviflora Juss.',
+                'compression_parallel' => 15.4,
+                'compression_perpendicular' => 6.34,
+                'shear_parallel' => 2.88,
+                'bending_tension_parallel' => 24,
+            ],
+            [
+                'strength_group' => 'high',
+                'common_name' => 'Narig',
+                'botanical_name' => 'Vatica spp.',
+                'compression_parallel' => 13.7,
+                'compression_perpendicular' => 4.97,
+                'shear_parallel' => 2.61,
+                'bending_tension_parallel' => 21.8,
+            ],
+            [
+                'strength_group' => 'high',
+                'common_name' => 'Sasalit',
+                'botanical_name' => 'Teijmanniodendron ahemianum (Merr) Bkh.',
+                'compression_parallel' => 21.6,
+                'compression_perpendicular' => 10.2,
+                'shear_parallel' => 3.38,
+                'bending_tension_parallel' => 31.3,
+            ],
+            [
+                'strength_group' => 'high',
+                'common_name' => 'Yakal',
+                'botanical_name' => 'Shorea spp.',
+                'compression_parallel' => 15.8,
+                'compression_perpendicular' => 6.27,
+                'shear_parallel' => 2.49,
+                'bending_tension_parallel' => 24.5,
+            ],
+
+            // Moderately High Strength Group
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Antipolo',
+                'botanical_name' => 'Arthocarpus spp.',
+                'compression_parallel' => 10.8,
+                'compression_perpendicular' => 3.9,
+                'shear_parallel' => 2.06,
+                'bending_tension_parallel' => 18.6,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Binggas',
+                'botanical_name' => 'Terminalia spp.',
+                'compression_parallel' => 11.4,
+                'compression_perpendicular' => 3.27,
+                'shear_parallel' => 2.24,
+                'bending_tension_parallel' => 18.9,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Bokbok',
+                'botanical_name' => 'Xanthophyllum excelsum (Blume) Miq.',
+                'compression_parallel' => 11.3,
+                'compression_perpendicular' => 3.41,
+                'shear_parallel' => 2.18,
+                'bending_tension_parallel' => 18.1,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Dao',
+                'botanical_name' => 'Dracontomelon spp.',
+                'compression_parallel' => 9.44,
+                'compression_perpendicular' => 3.27,
+                'shear_parallel' => 1.92,
+                'bending_tension_parallel' => 16.2,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Gatasan',
+                'botanical_name' => 'Garcla venulosa (Blanco) Choisy',
+                'compression_parallel' => 13.5,
+                'compression_perpendicular' => 3.52,
+                'shear_parallel' => 2.36,
+                'bending_tension_parallel' => 20.8,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'GUIjo',
+                'botanical_name' => 'Shore spp.',
+                'compression_parallel' => 13.2,
+                'compression_perpendicular' => 4.26,
+                'shear_parallel' => 2.4,
+                'bending_tension_parallel' => 21.8,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Kamagong',
+                'botanical_name' => 'Diospyros spp.',
+                'compression_parallel' => 11.7,
+                'compression_perpendicular' => 4.39,
+                'shear_parallel' => 2.47,
+                'bending_tension_parallel' => 20.9,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Kamatog',
+                'botanical_name' => 'Erythrophlοeum densiflorum (Elm) Merr.',
+                'compression_parallel' => 11.2,
+                'compression_perpendicular' => 3.95,
+                'shear_parallel' => 2.35,
+                'bending_tension_parallel' => 19,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Katmon',
+                'botanical_name' => 'Dillenia spp.',
+                'compression_parallel' => 11.9,
+                'compression_perpendicular' => 4.84,
+                'shear_parallel' => 2.29,
+                'bending_tension_parallel' => 18.8,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Kato',
+                'botanical_name' => 'Amoora spp.',
+                'compression_parallel' => 10.6,
+                'compression_perpendicular' => 3.46,
+                'shear_parallel' => 1.96,
+                'bending_tension_parallel' => 18.4,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Lomarau',
+                'botanical_name' => 'Swintonia foxworthyi Elm.',
+                'compression_parallel' => 11.8,
+                'compression_perpendicular' => 2.98,
+                'shear_parallel' => 2.18,
+                'bending_tension_parallel' => 19.8,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Mahogany, Big-leafed',
+                'botanical_name' => 'Swietenia macrophylla King',
+                'compression_parallel' => 10.5,
+                'compression_perpendicular' => 3.83,
+                'shear_parallel' => 2.71,
+                'bending_tension_parallel' => 16.5,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Makaasim',
+                'botanical_name' => 'Sysygium nitidum Benth',
+                'compression_parallel' => 11.4,
+                'compression_perpendicular' => 3.7,
+                'shear_parallel' => 2.4,
+                'bending_tension_parallel' => 20.5,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Malakauayan',
+                'botanical_name' => 'Decusocarpus philippinensis (Foxw.) de Laub.',
+                'compression_parallel' => 11.12,
+                'compression_perpendicular' => 2.32,
+                'shear_parallel' => 2.14,
+                'bending_tension_parallel' => 18.9,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Narra',
+                'botanical_name' => 'Pterocarpus indicus Willd',
+                'compression_parallel' => 11.4,
+                'compression_perpendicular' => 3.07,
+                'shear_parallel' => 1.91,
+                'bending_tension_parallel' => 18,
+            ],
+            [
+                'strength_group' => 'moderately_high',
+                'common_name' => 'Pahutan',
+                'botanical_name' => 'Mangifera spp.',
+                'compression_parallel' => 10,
+                'compression_perpendicular' => 2.5,
+                'shear_parallel' => 2.05,
+                'bending_tension_parallel' => 16.6,
+            ],
+
+            // Medium Strength Group
+            [
+                'strength_group' => 'medium',
+                'common_name' => 'Apitong',
+                'botanical_name' => 'Dipterocarpus spp.',
+                'compression_parallel' => 9.56,
+                'compression_perpendicular' => 2.2,
+                'shear_parallel' => 1.73,
+                'bending_tension_parallel' => 16.5,
+            ],
+            [
+                'strength_group' => 'medium',
+                'common_name' => 'Bagtikan',
+                'botanical_name' => 'Parashorea malaanonan (Blanco) Merr.',
+                'compression_parallel' => 9.89,
+                'compression_perpendicular' => 2.33,
+                'shear_parallel' => 1.82,
+                'bending_tension_parallel' => 16.6,
+            ],
+        ];
+
+        foreach ($data as $item) {
+            ReferenceValue::create($item);
+        }
+    }
+}

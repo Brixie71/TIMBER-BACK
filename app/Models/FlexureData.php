@@ -34,6 +34,7 @@ class FlexureData extends Model
         'area',
         'moisture_content',
         'max_force_load',
+        'species_id',
         'photo'
     ];
 
