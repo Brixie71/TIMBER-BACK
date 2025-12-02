@@ -32,6 +32,7 @@ class CompressiveDataController extends Controller
 
     /**
      * Create a new compressive test record
+     * Note: pressure and stress are auto-calculated by the model
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -41,21 +42,26 @@ class CompressiveDataController extends Controller
         $validatedData = $request->validate([
             'test_type' => 'required|string|max:191',
             'specimen_name' => 'required|string|max:191',
-            'width' => 'required|numeric',
-            'height' => 'required|numeric',
-            'length' => 'required|numeric',
-            'area' => 'required|numeric',
-            'moisture_content' => 'nullable|numeric',
-            'max_force_load' => 'required|numeric',
+            'base' => 'required|numeric|min:0',              // Changed from 'width'
+            'height' => 'required|numeric|min:0',
+            'length' => 'required|numeric|min:0',
+            'area' => 'required|numeric|min:0',
+            'moisture_content' => 'nullable|numeric|min:0|max:100',
+            'max_force' => 'required|numeric|min:0',
+            'species_id' => 'nullable|integer|exists:reference_values,id',  // NEW
             'photo' => 'nullable|string|max:191'
+            // pressure and stress are auto-calculated, not validated
         ]);
 
         $compressiveData = CompressiveData::create($validatedData);
+
+        // Return with calculated values
         return response()->json($compressiveData, 201);
     }
 
     /**
      * Update an existing compressive test record
+     * Note: pressure and stress are auto-calculated by the model
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
@@ -68,16 +74,20 @@ class CompressiveDataController extends Controller
         $validatedData = $request->validate([
             'test_type' => 'sometimes|string|max:191',
             'specimen_name' => 'sometimes|string|max:191',
-            'width' => 'sometimes|numeric',
-            'height' => 'sometimes|numeric',
-            'length' => 'sometimes|numeric',
-            'area' => 'sometimes|numeric',
-            'moisture_content' => 'nullable|numeric',
-            'max_force_load' => 'sometimes|numeric',
+            'base' => 'sometimes|numeric|min:0',              // Changed from 'width'
+            'height' => 'sometimes|numeric|min:0',
+            'length' => 'sometimes|numeric|min:0',
+            'area' => 'sometimes|numeric|min:0',
+            'moisture_content' => 'nullable|numeric|min:0|max:100',
+            'max_force' => 'sometimes|numeric|min:0',
+            'species_id' => 'nullable|integer|exists:reference_values,id',  // NEW
             'photo' => 'nullable|string|max:191'
+            // pressure and stress are auto-calculated, not validated
         ]);
 
         $compressiveData->update($validatedData);
+
+        // Return with recalculated values
         return response()->json($compressiveData);
     }
 
@@ -104,5 +114,48 @@ class CompressiveDataController extends Controller
     {
         $compressiveData = CompressiveData::where('test_type', $testType)->get();
         return response()->json($compressiveData);
+    }
+
+    /**
+     * Get compressive test data filtered by species
+     *
+     * @param int $speciesId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getBySpecies($speciesId)
+    {
+        $compressiveData = CompressiveData::where('species_id', $speciesId)->get();
+        return response()->json($compressiveData);
+    }
+
+    /**
+     * Get compressive test data with species information
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function indexWithSpecies()
+    {
+        $compressiveData = CompressiveData::with('species')->get();
+        return response()->json($compressiveData);
+    }
+
+    /**
+     * Recalculate stress and pressure for a specific record
+     * Useful for manual recalculation after data updates
+     *
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function recalculate($id)
+    {
+        $compressiveData = CompressiveData::findOrFail($id);
+
+        // Simply saving will trigger auto-calculation
+        $compressiveData->save();
+
+        return response()->json([
+            'message' => 'Calculations updated successfully',
+            'data' => $compressiveData
+        ]);
     }
 }

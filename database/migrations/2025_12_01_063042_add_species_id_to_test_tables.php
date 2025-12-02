@@ -11,17 +11,29 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('compressive_data', function (Blueprint $table) {
-            $table->unsignedInteger('species_id')->nullable()->after('max_force_load');
-        });
+        // Add species_id to compressive_data if it doesn't exist
+        if (!Schema::hasColumn('compressive_data', 'species_id')) {
+            Schema::table('compressive_data', function (Blueprint $table) {
+                $table->unsignedInteger('species_id')->nullable()->after('max_force');
+                $table->index('species_id');
+            });
+        }
 
-        Schema::table('shear_data', function (Blueprint $table) {
-            $table->unsignedInteger('species_id')->nullable()->after('max_force_load');
-        });
+        // Add species_id to shear_data if it doesn't exist
+        if (!Schema::hasColumn('shear_data', 'species_id')) {
+            Schema::table('shear_data', function (Blueprint $table) {
+                $table->unsignedInteger('species_id')->nullable()->after('max_force');
+                $table->index('species_id');
+            });
+        }
 
-        Schema::table('flexure_data', function (Blueprint $table) {
-            $table->unsignedInteger('species_id')->nullable()->after('max_force_load');
-        });
+        // Add species_id to flexure_data if it doesn't exist
+        if (!Schema::hasColumn('flexure_data', 'species_id')) {
+            Schema::table('flexure_data', function (Blueprint $table) {
+                $table->unsignedInteger('species_id')->nullable()->after('max_force');
+                $table->index('species_id');
+            });
+        }
     }
 
     /**
@@ -29,16 +41,25 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('compressive_data', function (Blueprint $table) {
-            $table->dropColumn('species_id');
-        });
+        if (Schema::hasColumn('compressive_data', 'species_id')) {
+            Schema::table('compressive_data', function (Blueprint $table) {
+                $table->dropIndex(['species_id']);
+                $table->dropColumn('species_id');
+            });
+        }
 
-        Schema::table('shear_data', function (Blueprint $table) {
-            $table->dropColumn('species_id');
-        });
+        if (Schema::hasColumn('shear_data', 'species_id')) {
+            Schema::table('shear_data', function (Blueprint $table) {
+                $table->dropIndex(['species_id']);
+                $table->dropColumn('species_id');
+            });
+        }
 
-        Schema::table('flexure_data', function (Blueprint $table) {
-            $table->dropColumn('species_id');
-        });
+        if (Schema::hasColumn('flexure_data', 'species_id')) {
+            Schema::table('flexure_data', function (Blueprint $table) {
+                $table->dropIndex(['species_id']);
+                $table->dropColumn('species_id');
+            });
+        }
     }
 };

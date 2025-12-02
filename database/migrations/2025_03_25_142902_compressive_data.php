@@ -15,14 +15,20 @@ return new class extends Migration
             $table->id('compressive_id');
             $table->string('test_type');
             $table->string('specimen_name');
-            $table->float('width');
+            $table->float('base');                      // Changed from 'width' to 'base'
             $table->float('height');
             $table->float('length');
             $table->float('area');
+            $table->float('pressure')->nullable();      // NEW: Pressure in N/mm²
             $table->float('moisture_content')->nullable();
-            $table->float('max_force_load');
+            $table->float('max_force');
+            $table->float('stress')->nullable();        // NEW: Stress in N/mm²
+            $table->unsignedInteger('species_id')->nullable();  // NEW: Foreign key to reference_values
             $table->string('photo')->nullable();
             $table->timestamps();
+
+            // Add index for species_id for better query performance
+            $table->index('species_id');
         });
     }
 
