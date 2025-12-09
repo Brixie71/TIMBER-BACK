@@ -72,9 +72,12 @@ class CalibrationSettingController extends Controller
             'display_box.width' => 'required|numeric',
             'display_box.height' => 'required|numeric',
             'segment_boxes' => 'required|array',
+            'calibration_image_size' => 'nullable|array',  // ← ADDED
+            'calibration_image_size.width' => 'required_with:calibration_image_size|numeric',  // ← ADDED
+            'calibration_image_size.height' => 'required_with:calibration_image_size|numeric',  // ← ADDED
             'num_digits' => 'sometimes|integer|min:1|max:10',
-            'has_decimal_point' => 'sometimes|boolean',  // ADD THIS
-            'decimal_position' => 'sometimes|integer|min:1|max:9',  // ADD THIS
+            'has_decimal_point' => 'sometimes|boolean',
+            'decimal_position' => 'sometimes|integer|min:1|max:9',
             'notes' => 'nullable|string'
         ]);
 
@@ -88,9 +91,10 @@ class CalibrationSettingController extends Controller
             'device_name' => $validatedData['device_name'] ?? null,
             'display_box' => $validatedData['display_box'],
             'segment_boxes' => $validatedData['segment_boxes'],
+            'calibration_image_size' => $validatedData['calibration_image_size'] ?? null,  // ← ADDED
             'num_digits' => $validatedData['num_digits'] ?? 3,
-            'has_decimal_point' => $validatedData['has_decimal_point'] ?? false,  // ADD THIS
-            'decimal_position' => $validatedData['decimal_position'] ?? 1,  // ADD THIS
+            'has_decimal_point' => $validatedData['has_decimal_point'] ?? false,
+            'decimal_position' => $validatedData['decimal_position'] ?? 1,
             'is_active' => true,
             'notes' => $validatedData['notes'] ?? null
         ]);
@@ -118,9 +122,12 @@ class CalibrationSettingController extends Controller
             'device_name' => 'nullable|string|max:191',
             'display_box' => 'sometimes|array',
             'segment_boxes' => 'sometimes|array',
+            'calibration_image_size' => 'nullable|array',  // ← ADDED
+            'calibration_image_size.width' => 'required_with:calibration_image_size|numeric',  // ← ADDED
+            'calibration_image_size.height' => 'required_with:calibration_image_size|numeric',  // ← ADDED
             'num_digits' => 'sometimes|integer|min:1|max:10',
-            'has_decimal_point' => 'sometimes|boolean',  // ADD THIS
-            'decimal_position' => 'sometimes|integer|min:1|max:9',  // ADD THIS
+            'has_decimal_point' => 'sometimes|boolean',
+            'decimal_position' => 'sometimes|integer|min:1|max:9',
             'is_active' => 'sometimes|boolean',
             'notes' => 'nullable|string'
         ]);

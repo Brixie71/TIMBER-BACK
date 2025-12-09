@@ -14,6 +14,7 @@ class CalibrationSetting extends Model
         'device_name',
         'display_box',
         'segment_boxes',
+        'calibration_image_size',  // ← ADDED
         'num_digits',
         'has_decimal_point',
         'decimal_position',
@@ -24,6 +25,7 @@ class CalibrationSetting extends Model
     protected $casts = [
         'display_box' => 'array',
         'segment_boxes' => 'array',
+        'calibration_image_size' => 'array',  // ← ADDED
         'is_active' => 'boolean',
         'has_decimal_point' => 'boolean',
         'num_digits' => 'integer',

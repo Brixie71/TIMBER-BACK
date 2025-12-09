@@ -134,7 +134,7 @@ class ReferenceValueController extends Controller
         $search = $request->get('q', '');
 
         $results = ReferenceValue::searchByName($search)
-            ->select('id', 'common_name', 'botanical_name', 'strength_group')
+            ->select('reference_value_id', 'common_name', 'botanical_name', 'strength_group')
             ->limit(10)
             ->get();
 
