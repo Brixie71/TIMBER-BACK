@@ -10,6 +10,7 @@ use App\Http\Controllers\CompressiveDataController;
 use App\Http\Controllers\CalibrationSettingController;
 use App\Http\Controllers\ReferenceValueController;
 use App\Http\Controllers\ActuatorCalibrationController;
+use App\Http\Controllers\MeasurementDetectionSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -431,3 +432,6 @@ Route::prefix('reference-values')->group(function () {
     Route::get('meta/strength-groups', [ReferenceValueController::class, 'getStrengthGroups']);
     Route::get('search/species', [ReferenceValueController::class, 'searchSpecies']);
 });
+
+Route::get('/measurement-settings/active', [MeasurementDetectionSettingController::class, 'active']);
+Route::post('/measurement-settings', [MeasurementDetectionSettingController::class, 'store']);
