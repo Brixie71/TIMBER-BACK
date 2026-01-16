@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ReferenceValue extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'strength_group',
@@ -27,6 +26,13 @@ class ReferenceValue extends Model
         'bending_tension_parallel' => 'decimal:2',
     ];
 
+    protected static function booted()
+    {
+        static::addGlobalScope('exclude_soft_deleted', function ($query) {
+            $query->whereNull('deleted_at');
+        });
+    }
+
     /**
      * Scope to filter by strength group
      */
@@ -40,8 +46,10 @@ class ReferenceValue extends Model
      */
     public function scopeSearchByName($query, $search)
     {
-        return $query->where('common_name', 'like', "%{$search}%")
-                    ->orWhere('botanical_name', 'like', "%{$search}%");
+        return $query->where(function ($q) use ($search) {
+            $q->where('common_name', 'like', "%{$search}%")
+                ->orWhere('botanical_name', 'like', "%{$search}%");
+        });
     }
 
     /**

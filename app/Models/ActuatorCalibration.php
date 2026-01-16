@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class ActuatorCalibration extends Model
 {
@@ -41,7 +42,9 @@ class ActuatorCalibration extends Model
      */
     public static function getActive()
     {
-        return self::where('is_active', true)->first();
+        return self::where('is_active', true)
+            ->orderByDesc('created_at')
+            ->first();
     }
 
     /**
@@ -49,14 +52,14 @@ class ActuatorCalibration extends Model
      */
     public function setAsActive()
     {
-        // Deactivate all calibrations
-        self::where('is_active', true)->update(['is_active' => false]);
+        return DB::transaction(function () {
+            self::where('is_active', true)->update(['is_active' => false]);
 
-        // Activate this calibration
-        $this->is_active = true;
-        $this->save();
+            $this->is_active = true;
+            $this->save();
 
-        return $this;
+            return $this;
+        });
     }
 
     /**
