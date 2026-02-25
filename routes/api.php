@@ -158,3 +158,8 @@ Route::prefix('reference-values')->group(function () {
 
 Route::get('/measurement-settings/active', [MeasurementDetectionSettingController::class, 'active']);
 Route::post('/measurement-settings', [MeasurementDetectionSettingController::class, 'store']);
+Route::get('/measurement-settings', [MeasurementDetectionSettingController::class, 'index']);
+Route::get('/measurement-settings/{id}', [MeasurementDetectionSettingController::class, 'show']);
+Route::put('/measurement-settings/{id}', [MeasurementDetectionSettingController::class, 'update']);
+Route::delete('/measurement-settings/{id}', [MeasurementDetectionSettingController::class, 'destroy']);
+Route::post('/measurement-settings/{id}/activate', [MeasurementDetectionSettingController::class, 'activate']);
